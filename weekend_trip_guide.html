@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekend Trip: Satara to Pune</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🏔️';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 30px;
+            opacity: 0.7;
+        }
+
+        .header::after {
+            content: '🌊';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            opacity: 0.7;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .route-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .route-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .route-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .recommended {
+            border-color: #e74c3c;
+            position: relative;
+        }
+
+        .recommended::before {
+            content: '⭐ RECOMMENDED';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .route-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .route-path {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .day-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+
+        .day-header {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .highlight-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #27ae60;
+            font-size: 0.9em;
+        }
+
+        .distance-time {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .why-better {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .why-better h4 {
+            color: #d68910;
+            margin-bottom: 10px;
+        }
+
+        .tips {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .tips h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .tips ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tips li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tips li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #3498db;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .route-options {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Weekend Nature Escape</h1>
+            <p class="subtitle">Satara → Untouched Waterfalls → Pune</p>
+        </div>
+
+        <div class="route-options">
+            <!-- Option 1: Devkund Route -->
+            <div class="route-card recommended">
+                <h3 class="route-title">🌿 DEVKUND ROUTE</h3>
+                <div class="route-path">
+                    Satara → Bhira → Devkund → Tamhini Ghat → Pune
+                </div>
+                
+                <div class="distance-time">
+                    📍 Total: ~200km | ⏱️ 2 Days Perfect
+                </div>
+
+                <div class="day-section">
+                    <div class="day-header">📅 SATURDAY</div>
+                    <div class="highlights">
+                        <div class="highlight-item">🚗 Satara → Bhira (2.5hrs)</div>
+                        <div class="highlight-item">🥾 Trek to Devkund (4km)</div>
+                        <div class="highlight-item">🏊 Swim in emerald pool</div>
+                        <div class="highlight-item">🏠 Stay at Bhira village</div>
+                    </div>
+                </div>
+
+                <div class="day-section">
+                    <div class="day-header">📅 SUNDAY</div>
+                    <div class="highlights">
+                        <div class="highlight-item">🌅 Morning trek completion</div>
+                        <div class="highlight-item">🛣️ Scenic Tamhini Ghat drive</div>
+                        <div class="highlight-item">📸 Valley viewpoints</div>
+                        <div class="highlight-item">🏙️ Reach Pune by evening</div>
+                    </div>
+                </div>
+
+                <div class="why-better">
+                    <h4>🌟 Why This Route?</h4>
+                    <p>• Completely untouched & unexplored<br>
+                    • Swimming in pristine emerald pools<br>
+                    • Most scenic drive in Maharashtra<br>
+                    • Less crowded, authentic experience</p>
+                </div>
+            </div>
+
+            <!-- Option 2: Thoseghar Route -->
+            <div class="route-card">
+                <h3 class="route-title">💧 THOSEGHAR ROUTE</h3>
+                <div class="route-path">
+                    Satara → Thoseghar → Kaas Plateau → Pune
+                </div>
+                
+                <div class="distance-time">
+                    📍 Total: ~150km | ⏱️ Relaxed Trip
+                </div>
+
+                <div class="day-section">
+                    <div class="day-header">📅 SATURDAY</div>
+                    <div class="highlights">
+                        <div class="highlight-item">🚗 Satara → Thoseghar (26km)</div>
+                        <div class="highlight-item">🏆 #1 Attraction in Satara</div>
+                        <div class="highlight-item">💧 Series of waterfalls</div>
+                        <div class="highlight-item">🏠 Stay near Thoseghar</div>
+                    </div>
+                </div>
+
+                <div class="day-section">
+                    <div class="day-header">📅 SUNDAY</div>
+                    <div class="highlights">
+                        <div class="highlight-item">🌸 Kaas Plateau (Valley of Flowers)</div>
+                        <div class="highlight-item">🛣️ Western Ghats scenic drive</div>
+                        <div class="highlight-item">📸 Flower photography</div>
+                        <div class="highlight-item">🏙️ Reach Pune</div>
+                    </div>
+                </div>
+
+                <div class="why-better">
+                    <h4>🌟 Why This Route?</h4>
+                    <p>• Easy access & less trekking<br>
+                    • Famous waterfall destination<br>
+                    • Seasonal flowers (Aug-Oct)<br>
+                    • Good for all fitness levels</p>
+                </div>
+            </div>
+
+            <!-- Option 3: Combined Route -->
+            <div class="route-card">
+                <h3 class="route-title">🎯 ADVENTURE COMBO</h3>
+                <div class="route-path">
+                    Satara → Thoseghar → Bhira → Devkund → Pune
+                </div>
+                
+                <div class="distance-time">
+                    📍 Total: ~250km | ⏱️ Action-Packed
+                </div>
+
+                <div class="day-section">
+                    <div class="day-header">📅 SATURDAY</div>
+                    <div class="highlights">
+                        <div class="highlight-item">🌅 Morning: Thoseghar Falls</div>
+                        <div class="highlight-item">🚗 Afternoon: Drive to Bhira</div>
+                        <div class="highlight-item">🏠 Evening: Bhira village stay</div>
+                        <div class="highlight-item">🍽️ Local food experience</div>
+                    </div>
+                </div>
+
+                <div class="day-section">
+                    <div class="day-header">📅 SUNDAY</div>
+                    <div class="highlights">
+                        <div class="highlight-item">🥾 Early morning: Devkund trek</div>
+                        <div class="highlight-item">🏊 Swim in emerald pool</div>
+                        <div class="highlight-item">🛣️ Tamhini Ghat drive</div>
+                        <div class="highlight-item">🏙️ Evening: Pune arrival</div>
+                    </div>
+                </div>
+
+                <div class="why-better">
+                    <h4>🌟 Why This Route?</h4>
+                    <p>• Best of both worlds<br>
+                    • Maximum waterfall experience<br>
+                    • Adventure + relaxation<br>
+                    • For energetic travelers</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips">
+            <h4>🎒 Essential Tips</h4>
+            <ul>
+                <li>Start early both days (7 AM recommended)</li>
+                <li>Carry rain gear & trekking shoes</li>
+                <li>Book Bhira homestays in advance</li>
+                <li>Best time: July-December</li>
+                <li>Moderate fitness needed for Devkund</li>
+                <li>Carry snacks & water for treks</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
